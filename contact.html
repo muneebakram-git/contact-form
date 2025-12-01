@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 600px;
+        width: 100%;
+        padding: 40px;
+        animation: slideIn 0.5s ease-out;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 32px;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #444;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #7dd3c0;
+        box-shadow: 0 0 0 3px rgba(125, 211, 192, 0.2);
+      }
+
+      input:hover,
+      textarea:hover {
+        border-color: #c5e8df;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      button {
+        width: 100%;
+        background: linear-gradient(135deg, #56ccf2 0%, #2f80ed 100%);
+        color: white;
+        padding: 14px 30px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(86, 204, 242, 0.3);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      button.success {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        cursor: default;
+      }
+
+      button.success:hover {
+        transform: none;
+        box-shadow: 0 10px 25px rgba(56, 239, 125, 0.4);
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      @media (max-width: 600px) {
+        .row {
+          grid-template-columns: 1fr;
+        }
+
+        .container {
+          padding: 30px 20px;
+        }
+
+        h1 {
+          font-size: 26px;
+        }
+      }
+
+      /* Loading animation */
+      button.loading {
+        position: relative;
+        color: transparent;
+      }
+
+      button.loading::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 50%;
+        left: 50%;
+        margin-left: -10px;
+        margin-top: -10px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Get In Touch</h1>
+      <p class="subtitle">We'd love to hear from you. Send us a message!</p>
+
+      <form
+        id="contactForm"
+        action="https://formsubmit.co/binyameen@eraviyasolutions.com"
+        method="POST"
+      >
+        <!-- Hidden fields for FormSubmit configuration -->
+        <input type="hidden" name="_captcha" value="false" />
+        <input
+          type="hidden"
+          name="_next"
+          value="https://yourdomain.com/contact.html"
+        />
+
+        <div class="row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="John"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Doe"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="john.doe@example.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+1 (234) 567-8900"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Tell us what's on your mind..."
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn">Send Message</button>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById("contactForm");
+      const submitBtn = document.getElementById("submitBtn");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Add loading state
+        submitBtn.classList.add("loading");
+        submitBtn.disabled = true;
+
+        // Simulate form submission (in real scenario, FormSubmit handles this)
+        setTimeout(() => {
+          // Remove loading state
+          submitBtn.classList.remove("loading");
+
+          // Add success state
+          submitBtn.classList.add("success");
+          submitBtn.textContent = "Submitted Successfully ✓";
+
+          // Actually submit the form after showing success
+          setTimeout(() => {
+            form.submit();
+          }, 1000);
+        }, 1500);
+      });
+    </script>
+  </body>
+</html>
